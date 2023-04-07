@@ -5,5 +5,5 @@ def create_app():
 
     @app.route('/')
     def hello_pybo():
-        return "Hello, Pybooooo!"
+        return "Hello! Pybooooo!"
     return app
