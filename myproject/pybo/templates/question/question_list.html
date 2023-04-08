@@ -1,0 +1,11 @@
+<!-- 질문 목록들을 담는 question_list 페이지-->
+
+{% if question_list %}
+<ul>
+    {% for question in question_list %}
+    <li><a href="/detail/{{ question.id }}/">{{ question.subject }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>질문이 없습니다.</p>
+{% endif %}
