@@ -1,4 +1,4 @@
-# 블루프린트로 기능 분리 < main_views.py
+# 블루프린트로 기능 분리 ◀ main_views.py
 from flask import Blueprint, render_template
 
 from pybo.models import Question

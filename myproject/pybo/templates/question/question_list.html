@@ -1,11 +1,56 @@
-<!-- 질문 목록들을 담는 question_list 페이지-->
 
-{% if question_list %}
-<ul>
-    {% for question in question_list %}
-    <li><a href="/detail/{{ question.id }}/">{{ question.subject }}</a></li>
+{% extends 'base.html' %}
+  {% block content %}
+
+  <main id="main" class="main">
+
+    <div class="index_pagetitle">
+      <br>
+      <h1>Hello!</h1>
+      <br/>
+      <h2>틀린 문법을 콕! 집어주는<br/>
+      영문법 학습 일기장, 콕!Tale 입니다.</h2>
+    </div><!-- End Page Title -->
+
+
+  <div id="index_button" class="index_button">
+    <button class="start">시작하기</button>
+    <button class="start">로그인</button>
+  </div>
+
+<!-- 질문 목록들을 담는 question_list 페이지-->
+<div class="container my-3">
+  <table class="table">
+    <thead>
+    <tr class="table-dark">
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성일시</th>
+    </tr>
+    </thead>
+  <tbody>
+  {% if question_list %}
+  {% for question in question_list %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>
+      <!--    라우팅 함수로 url_for 함수 이용하여 찾을 수 있도록 변경-->
+      <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+    </td>
+    <td>{{ question.create_date }}</td>
+
+<!--    하드 코딩된 url초기 url-->
+<!--    <li><a href="/detail/{{ question.id }}/">{{ question.subject }}</a></li>-->
+    </tr>
     {% endfor %}
-</ul>
-{% else %}
-<p>질문이 없습니다.</p>
-{% endif %}
+    {% else %}
+  <tr>
+    <td colspan="3">질문이 없습니다.</td>
+    </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+    </main>
+  <!-- End #main -->
+  {% endblock %}

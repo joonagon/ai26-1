@@ -1,5 +1,65 @@
-<!--질문 상세 화면 제작(detail)-->
-<h1>{{ question.subject }}</h1>
-<div>
-  {{ question.content }}
-</div>
+<!--먹고 쓰고 자고 일기_초안1 페이지 추가 -->
+
+{% extends 'base.html' %}
+    {% block content %}
+
+
+  <main id="main" class="main">
+
+        <!--질문 상세 화면 제작(detail)-->
+        <div class="container my-3">
+
+<!--질문-->
+        <h2 class="border-bottom py-2">{{ question.subject }}</h2>
+          <div class="card my-3">
+            <div class="card-body">
+              <div class="card-text">{{ question.content }}</div>
+              <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                  {{ question.create_date }}
+
+                </div>
+              </div>
+              <form action="{{ url_for('answer.create', question_id = question.id) }}" method="post">
+          <textarea name="content" id="content" cols="90" rows="10"></textarea>
+          <input type="submit" value="답변 등록">
+        </form>
+            </div>
+          </div>
+
+
+
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+<!--              답변 목록-->
+              <h5 class="border-bottom my-3 py-2">여러분의 글을 위해 추천하는 영어표현!</h5>
+              <p>유사한 표현을 알아볼까요? ▼▼▼▼▼</p>
+                <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 해석이 있습니다.</h5>
+
+
+          {% for answer in question.answer_set %}
+              <div class="card-body">
+                <div class="card-text">{{ answer.content }}</div>
+                <div class="d-flex justify-content-end">
+                  <div class="badge bg-light text-dark p-2">
+                    {{ answer.create_date }}
+                  </div>
+                </div>
+              </div>
+
+          {% endfor %}
+
+          </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- End #main -->
+{% endblock %}
