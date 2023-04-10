@@ -21,16 +21,15 @@ def create_app():
     from . import models
 
     # 블루프린트로 라우팅함수 관리함
-    from .views import main_views, question_views, answer_views
+    from .views import main_views, question_views, answer_views, auth_views
     app.register_blueprint(main_views.bp)
     # 블루프린트에 question_views도 적용
     app.register_blueprint(question_views.bp)
     # 답변 기능을 위한 블루프린트 등록
     app.register_blueprint(answer_views.bp)
-
-    # 플라스크 애플리케이션 팩토리를 사용해서 작성함
-    # @app.route('/')
-    # def hello_pybo():
-    #     return "Hello! Pybooooo!"
-
+    # 회원가입 기능을 위한 블루프린트 등록
+    app.register_blueprint(auth_views.bp)
+    # 필터
+    from .filter import format_datetime
+    app.jinja_env.filters['datetime'] = format_datetime
     return app
