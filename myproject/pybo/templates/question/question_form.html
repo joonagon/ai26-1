@@ -6,11 +6,11 @@
 
 <!-- 질문 등록 -->
     <h5 class="my-3 border-bottom pb-2">일기 쓰기</h5>
-    <form method="post" class="my-3">
+    <form method="post" class="post-form my-3">
         {{ form.csrf_token }}
 <!--오류표시 시작-->
         {% if form.errors %}
-        <div claas="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert">
             {% for field, errors in form.errors.items() %}
             <strong>{{ form[field].label }}</strong>
             <ul>
@@ -27,8 +27,9 @@
          <div class="card">
           <div class="card-body">
 
-        {{ form.subject.label }}
-        {{ form.subject(class="form-control") }}
+              <label for="subject">제목</label>
+<!--              데이터가 공백일 때 오류 표시 + 다른 데이터는 초기화 하지 않음-->
+              <input type="text" class="form-control" name="subject" id="subject" value="{{ form.subject.data or '' }}">
           </div>
           <div class="card-body">
             <label for="content">내용</label>

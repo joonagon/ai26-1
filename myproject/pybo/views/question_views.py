@@ -7,7 +7,7 @@ from pybo import db
 from pybo.models import Question
 
 # 질문 등록 라우팅 함수 추가
-from pybo.forms import QuestionForm
+from pybo.forms import QuestionForm, AnswerForm
 
 bp = Blueprint('question', __name__, url_prefix = '/question')
 
@@ -18,8 +18,9 @@ def _list():
 
 @bp.route('/detail/<int:question_id>/')
 def detail(question_id):
+    form = AnswerForm()
     question = Question.query.get_or_404(question_id)
-    return render_template('question/question_detail.html', question=question)
+    return render_template('question/question_detail.html', question=question, form=form)
 
 # create 라우팅 함수 작성 - GET, POST을 모두 처리하고 라벨이나 입력폼 사용시 필요
 @bp.route('/create/', methods=('GET', 'POST'))
