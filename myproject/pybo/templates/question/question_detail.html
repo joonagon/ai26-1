@@ -22,21 +22,17 @@
               </div>
               <form action="{{ url_for('answer.create', question_id = question.id) }}" method="post">
           <textarea name="content" id="content" cols="90" rows="10"></textarea>
-          <input type="submit" value="답변 등록">
+          <input type="submit" value="댓글 등록">
         </form>
             </div>
           </div>
-
-
-
 
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
 <!--              답변 목록-->
-              <h5 class="border-bottom my-3 py-2">여러분의 글을 위해 추천하는 영어표현!</h5>
-              <p>유사한 표현을 알아볼까요? ▼▼▼▼▼</p>
-                <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 해석이 있습니다.</h5>
+              <h5 class="border-bottom my-3 py-2">댓글 목록</h5>
+                <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 댓글이 있습니다.</h5>
 
 
           {% for answer in question.answer_set %}

@@ -38,7 +38,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ url_for('question._list') }}" class="logo d-flex align-items-center">
+      <a href='/' class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">콕! Tale.</span>
       </a>
@@ -48,7 +48,7 @@
 
 
         <li class="nav-link">
-          <a class="nav-link collapsed" href="일기_초안1.html">
+          <a class="nav-link collapsed" href="">
             <i class="bi bi-journal-text"></i>
             <span>사용설명서</span>
           </a>
@@ -57,21 +57,22 @@
 
 
           <li class="nav-link">
-            <a class="nav-link collapsed" href="/question/detail/3/">
+            <a class="nav-link collapsed" href="{{ url_for('question.create') }}">
               <i class="bi bi-person"></i>
               <span>일기쓰기</span>
             </a>
           </li><!-- End 일기쓰기 Page Nav -->
 
           <li class="nav-link">
-            <a class="nav-link collapsed" href="pages-faq.html">
+            <a class="nav-link collapsed" href="{{ url_for('question._list') }}">
+<!--              공지사항 게시판은 추후 변경 예정-->
               <i class="bi bi-envelope"></i>
               <span>공지사항</span>
             </a>
           </li><!-- End 공지사항 Page Nav -->
 
           <li class="nav-link">
-            <a class="nav-link collapsed" href="pages-register.html">
+            <a class="nav-link collapsed" href="{{ url_for('question._list') }}">
               <i class="bi bi-card-list"></i>
               <span>공개일기장</span>
             </a>

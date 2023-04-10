@@ -1,22 +1,9 @@
 
 {% extends 'base.html' %}
-  {% block content %}
+{% block content %}
 
   <main id="main" class="main">
 
-    <div class="index_pagetitle">
-      <br>
-      <h1>Hello!</h1>
-      <br/>
-      <h2>틀린 문법을 콕! 집어주는<br/>
-      영문법 학습 일기장, 콕!Tale 입니다.</h2>
-    </div><!-- End Page Title -->
-
-
-  <div id="index_button" class="index_button">
-    <button class="start">시작하기</button>
-    <button class="start">로그인</button>
-  </div>
 
 <!-- 질문 목록들을 담는 question_list 페이지-->
 <div class="container my-3">
@@ -50,6 +37,8 @@
       {% endif %}
     </tbody>
   </table>
+<!--  질문 등록 버튼-->
+  <a href="{{ url_for('question.create') }}" class = "btn btn-primary">일기 등록하기</a>
 </div>
     </main>
   <!-- End #main -->

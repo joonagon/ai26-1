@@ -1,7 +1,13 @@
+from datetime import datetime
 # 블루프린트로 기능 분리 ◀ main_views.py
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, url_for
+from werkzeug.utils import redirect
 
+from pybo import db
 from pybo.models import Question
+
+# 질문 등록 라우팅 함수 추가
+from pybo.forms import QuestionForm
 
 bp = Blueprint('question', __name__, url_prefix = '/question')
 
@@ -14,3 +20,14 @@ def _list():
 def detail(question_id):
     question = Question.query.get_or_404(question_id)
     return render_template('question/question_detail.html', question=question)
+
+# create 라우팅 함수 작성 - GET, POST을 모두 처리하고 라벨이나 입력폼 사용시 필요
+@bp.route('/create/', methods=('GET', 'POST'))
+def create():
+    form = QuestionForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        question = Question(subject=form.subject.data, content=form.content.data, create_date=datetime.now())
+        db.session.add(question)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('question/question_form.html', form=form)

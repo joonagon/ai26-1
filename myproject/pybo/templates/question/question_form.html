@@ -1,0 +1,45 @@
+<!-- 질문 폼 템플릿( 물론 base.html 템플릿 상속함)-->
+{% extends 'base.html' %}
+{% block content %}
+
+  <main id="main" class="main">
+
+<!-- 질문 등록 -->
+    <h5 class="my-3 border-bottom pb-2">일기 쓰기</h5>
+    <form method="post" class="my-3">
+        {{ form.csrf_token }}
+<!--오류표시 시작-->
+        {% if form.errors %}
+        <div claas="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items() %}
+            <strong>{{ form[field].label }}</strong>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endif %}
+<!--        오류표시 끝-->
+
+        <div class="col-lg-7">
+         <div class="card">
+          <div class="card-body">
+
+        {{ form.subject.label }}
+        {{ form.subject(class="form-control") }}
+          </div>
+          <div class="card-body">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content" id="content" rows="10"></textarea>
+          </div>
+          </div>
+        </div>
+
+
+        <button type="submit" class = "btn btn-primary">저장하기</button>
+    </form>
+</div>
+  </main>
+{% endblock %}
