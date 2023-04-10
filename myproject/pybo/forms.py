@@ -9,4 +9,4 @@ class QuestionForm(FlaskForm):
     content = TextAreaField('내용', validators = [DataRequired('내용은 필수 입력 항목입니다.')])
 # 답변 폼 만들기
 class AnswerForm(FlaskForm):
-    contemnt = TextAreaField('내용', validators=[DataRequired('내용은 필수 입력 항목입니다.')])
+    content = TextAreaField('내용', validators=[DataRequired('내용은 필수 입력 항목입니다.')])

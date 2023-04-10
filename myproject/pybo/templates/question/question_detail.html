@@ -1,7 +1,7 @@
 <!--먹고 쓰고 자고 일기_초안1 페이지 추가 -->
 
 {% extends 'base.html' %}
-    {% block content %}
+{% block content %}
 
 
   <main id="main" class="main">
@@ -14,39 +14,14 @@
           <div class="card my-3">
             <div class="card-body">
               <div class="card-text">{{ question.content }}</div>
-              <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2">
                   {{ question.create_date }}
                 </div>
               </div>
-              <form action="{{ url_for('answer.create', question_id = question.id) }}" method="post" class="my-3">
-                {{ form.csrf_token }}
-        <!--오류표시 (question_form과 다를 것이 없음) 시작-->
-        {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for field, errors in form.errors.items() %}
-            <strong>{{ form[field].label }}</strong>
-            <ul>
-                {% for error in errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
+           </div>
         </div>
-        {% endif %}
-        <!--오류표시-->
-
-        </form>
-        </div>
-       </div>
-            <div class="d-flex justify-content-left">
-                <div class="mb-3">
-          <textarea name="content" id="content" cols="50" rows="1"></textarea>
-          <input type="submit" value="댓글 등록">
-            </div>
-            </div>
-
-          </div>
+      </div>
 
 <!--답변 목록-->
      <div class="container my-3">
@@ -54,29 +29,48 @@
         <div class="card my-3">
           <div class="card-body">
               <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 댓글이 있습니다.</h5>
+              <div>
+
                 {% for answer in question.answer_set %}
-              <div class="card-text">{{ answer.content }}</div>
-              <div class="d-flex justify-content-end">
-                  <div class="badge bg-light text-dark p-2">
+                 <div class="card-text">{{ answer.content }}</div>
+                  <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2">
                       {{ answer.create_date }}
+                    </div>
                   </div>
+                  {% endfor %}
+
               </div>
-          {% endfor %}
-          </div>
+
+
+          <form action="{{ url_for('answer.create', question_id = question.id) }}" method="post" class="my-3">
+           {{ form.csrf_token }}
+            <!--오류표시 (question_form과 다를 것이 없음) 시작-->
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field, errors in form.errors.items() %}
+                <strong>{{ form[field].label }}</strong>
+                <ul>
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
         </div>
+        {% endif %}
+        <!--오류표시 끝-->
+      </div>
     </div>
 
-
-
-          </div>
+        <div class="card my-3">
+          <div class="card-body">
+            <div class="mb-3">
+                <textarea name="content" id="content" cols="160%" rows="1"></textarea>
             </div>
-          </div>
-          </div>
-
-        </div>
+                <input type="submit" value="댓글 등록">
+        </form>
       </div>
-
-
-  </main>
+   </div>
+</main>
   <!-- End #main -->
 {% endblock %}
