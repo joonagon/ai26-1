@@ -3,9 +3,9 @@
 {% block content %}
 
   <main id="main" class="main">
-
+<div class="container">
 <!-- 질문 등록 -->
-    <h5 class="my-3 border-bottom pb-2">일기 쓰기</h5>
+    <h5 class="my-3 pb-2">일기 쓰기</h5>
     <form method="post" class="post-form my-3">
         {{ form.csrf_token }}
         <!--오류표시 시작-->
@@ -41,6 +41,7 @@
 
         <button type="submit" class = "btn btn-primary">저장하기</button>
     </form>
+</div>
 </div>
   </main>
 {% endblock %}

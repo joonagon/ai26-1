@@ -18,3 +18,11 @@ class UserCreateForm(FlaskForm):
         DataRequired(), EqualTo('password2', '비밀번호가 일치하지 않습니다')])
     password2 = PasswordField('비밀번호확인', validators=[DataRequired()])
     email = EmailField('이메일', validators=[DataRequired(), Email()])
+    nickname = StringField('닉네임', validators=[DataRequired()])
+    name = StringField('이름', validators=[DataRequired()])
+    dayofbirth = StringField('생년월일', validators=[DataRequired()])
+
+# 로그인 폼 제작
+class UserLoginForm(FlaskForm):
+    username = StringField('사용자이름', validators=[DataRequired(), Length(min=3, max=25)])
+    password = PasswordField('비밀번호', validators=[DataRequired()])

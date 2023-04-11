@@ -1,13 +1,14 @@
-<!-- ======= 헤더 ======= -->
+<!--헤더(네비게이션바 포함) 내용 템플릿-->
+<!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href='/' class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+      <a href="/" class="logo d-flex align-items-center">
+        <img src="pybo/templates/question/assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">콕! Tale.</span>
       </a>
     </div><!-- End Logo -->
         <li class="nav-link">
-          <a class="nav-link collapsed" href="">
+          <a class="nav-link collapsed" href="#">
             <i class="bi bi-journal-text"></i>
             <span>사용설명서</span>
           </a>
@@ -21,7 +22,6 @@
           </li><!-- End 일기쓰기 Page Nav -->
           <li class="nav-link">
             <a class="nav-link collapsed" href="{{ url_for('question._list') }}">
-              <!--공지사항 게시판은 추후 변경 예정-->
               <i class="bi bi-envelope"></i>
               <span>공지사항</span>
             </a>
@@ -35,13 +35,13 @@
           <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-right">
           <li class="nav-item dropdown pe-3">
-            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url_for('auth.signup') }}" data-bs-toggle="dropdown">
-              <img src="" alt="Profile" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2">회원가입(임시)</span>
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <span class="d-none d-md-block dropdown-toggle ps-2">수면안대</span>
             </a><!-- End Profile Iamge Icon -->
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>내 계정</h6>
+              <h6>수면안대</h6>
             </li>
             <li>
               <hr class="dropdown-divider">

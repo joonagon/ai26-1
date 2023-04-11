@@ -29,3 +29,6 @@ def index():
 def detail(question_id):
     question = Question.query.get_or_404(question_id)
     return render_template('question/question_detail.html', question=question)
+
+def index2():
+    return render_template('question/index2.html')
