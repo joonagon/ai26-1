@@ -1,22 +1,18 @@
-{% extends 'base.html' %}
-{% block content %}
-
-  <main id="main" class="main">
-
-    <div class="index_pagetitle">
-      <br>
-      <h1>Hello!</h1>
-      <br/>
-      <h2>틀린 문법을 콕! 집어주는<br/>
-      영문법 학습 일기장, 콕!Tale 입니다.</h2>
-    </div><!-- End Page Title -->
-
-
-  <div id="index_button" class="index_button">
-    <a href="{{ url_for('question._list') }}" class = "btn btn-primary">시작하기</a>
-  </div>
-
-
-    </main>
-  <!-- End #main -->
-  {% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TTS with Transformers and Flask</title>
+</head>
+<body>
+    <h1>TTS with Transformers and Flask</h1>
+    <form action="/generate_speech" method="POST">
+        <label for="text">Enter English text:</label>
+        <input type="text" id="text" name="text">
+        <button type="submit">Generate Speech</button>
+    </form>
+    {% if speech_text %}
+        <h2>Generated speech:</h2>
+        <p>{{ speech_text }}</p>
+    {% endif %}
+</body>
+</html>

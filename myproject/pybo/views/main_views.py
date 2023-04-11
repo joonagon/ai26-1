@@ -32,3 +32,11 @@ def detail(question_id):
 
 def index2():
     return render_template('question/index2.html')
+
+# notice_list에서 요청된 url에 대응할 수 있도록 라우팅 함수 추가
+@bp.route('/notice_list/<int:notice_id>/')
+def notice_detail(notice_id):
+    notice = Notice.query.get_or_404(notice_id)
+    return render_template('question/notice_detail.html', notice=notice)
+
+

@@ -23,14 +23,10 @@
               <input type="text" class="form-control" name="username" id="username"
                 value="{{ form.username.data or '' }}" required placeholder="아이디">
               </div>
-
-
             <div class="col-12">
-<!--              <label for="password">비밀번호</label>-->
                 <input type="password" class="form-control" name="password" id="password"
                 value="{{ form.password.data or '' }}" required placeholder="비밀번호">
             </div>
-
             <div class="col-12">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
@@ -39,7 +35,7 @@
             </div>
             <div class="col-12">
 
-              <button class="login-btn w-100" type="submit" onclick="location.href='{{ url_for('main.index') }}'">Login</button>
+              <button type="submit" class="login-btn w-100" onclick="location.href='{{ url_for('main.index') }}'">로그인</button>
             </div>
             <div class="col-12">
               <button class="register-btn w-100" type="button" onclick="location.href='{{ url_for('auth.signup') }}'">회원가입</button>
@@ -62,12 +58,9 @@
 
       <div class="credits">
                 </div>
-
               </div><!-- End Bordered Tabs -->
-
             </div>
           </div>
-
         </div>
       </div>
 </main>

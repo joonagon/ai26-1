@@ -15,8 +15,14 @@
   </div>
      <div class="card">
        <h5 class="card-header"><a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a></h5>
-       <h7 class="card-footer">{{ question.create_date|datetime }}</h7>
-       <div class="card-body">{{ question.content }}</div>
+       <div style="text-align: right;">
+         <h8>작성자 : </h8>
+          <div class="badge bg-light text-dark p-3">{{ question.user.username }}</div>
+       <h7 class="card-body">{{ question.create_date|datetime }}
+         </h7>
+       </div>
+       <div class="card-body">{{ question.content }}
+       </div>
    </div>
   </div>
     {% endfor %}
@@ -24,40 +30,6 @@
 </div></div>
 <!-- End Card with an image on bottom -->
 
-<!--테이블 형태 -->
-<!--  <table class="table">-->
-<!--    <thead>-->
-<!--    <tr class="table-dark">-->
-<!--      <th>번호</th>-->
-<!--      <th>제목</th>-->
-<!--      <th>작성일시</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--  <tbody>-->
-<!--  {% if question_list %}-->
-<!--  {% for question in question_list.items %}-->
-<!--  <tr>-->
-<!--    <td>{{ question_list.total - ((question_list.page-1) * question_list.per_page) - loop.index0 }}</td>-->
-<!--    <td>-->
-      <!--라우팅 함수로 url_for 함수 이용하여 찾을 수 있도록 변경-->
-<!--      <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>-->
-<!--      {% if question.answer_set|length > 0 %}-->
-<!--      <span class="text-danger small mx-2">{{ question.answer_set|length }}</span>-->
-<!--      {% endif %}-->
-<!--    </td>-->
-<!--    <td>{{ question.create_date|datetime }}</td>-->
-
-<!--    하드 코딩된 url초기 url-->
-<!--    <li><a href="/detail/{{ question.id }}/">{{ question.subject }}</a></li>-->
-<!--    </tr>-->
-<!--    {% endfor %}-->
-<!--    {% else %}-->
-<!--  <tr>-->
-<!--    <td colspan="3">질문이 없습니다.</td>-->
-<!--    </tr>-->
-<!--      {% endif %}-->
-<!--    </tbody>-->
-<!--  </table>-->
 <!--페이징 처리 시작(paginate 함수 사용)-->
 <ul class="pagination justify-content-center">
 <!--이전페이지-->
