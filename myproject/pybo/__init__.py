@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 import config
 
+
 db = SQLAlchemy()
 migrate = Migrate()
 
@@ -21,7 +22,7 @@ def create_app():
     from . import models
 
     # 블루프린트로 라우팅함수 관리함
-    from .views import main_views, question_views, answer_views, auth_views
+    from .views import main_views, question_views, answer_views, auth_views, app_
     app.register_blueprint(main_views.bp)
     # 블루프린트에 question_views도 적용
     app.register_blueprint(question_views.bp)
@@ -29,7 +30,9 @@ def create_app():
     app.register_blueprint(answer_views.bp)
     # 회원가입 기능을 위한 블루프린트 등록
     app.register_blueprint(auth_views.bp)
+    app.register_blueprint(app_.bp)
     # 필터
     from .filter import format_datetime
     app.jinja_env.filters['datetime'] = format_datetime
     return app
+
