@@ -29,13 +29,19 @@
                 </div>
                 <!--일기 수정기능-->
                <div class="my-3">
+                 <a href="javascript:void(0)" class="recommend btn btn-sm btn-outline-secondary"
+                    data-uri="{{ url_for('question.vote', question_id=question.id) }}">
+                    <i class="bi bi-heart"></i>
+                 </a>
                  {% if g.user == question.user %}
                  <a href="{{ url_for('question.modify', question_id=question.id) }}"
-                 class="btn btn-sm btn-outline-secondary">수정(내용 초기화)</a>
+                 class="btn btn-sm btn-outline-secondary">수정</a>
                  <a href="javascript:void(0)" class="delete btn btn-sm btn-outline-secondary"
                     data-uri="{{ url_for('question.delete', question_id=question.id) }}">삭제</a>
                  {% endif %}
               </div>
+                <br>
+                <span>좋아요 {{ question.voter|length }}개</span>
            </div>
         </div>
       </div>
@@ -45,11 +51,11 @@
        <h5 class="border-bottom py-2">댓글 목록</h5>
         <div class="card my-3">
           <div class="card-body">
-              <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 댓글이 있습니다.</h5>
+              <h6 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 댓글이 있습니다.</h6>
               <div>
                 {% for answer in question.answer_set %}
                  <a id="answer_{{ answer.id }}"></a>
-                 <div class="card-text">{{ answer.content|markdown  }}</div>
+                 <div class="card-body">{{ answer.content|markdown  }}</div>
                   <div class="d-flex justify-content-end">
                       {% if answer.modify_date %}
                       <div class="badge bg-light text-dark p-2 text-start mx-3">
@@ -94,9 +100,9 @@
         <div class="card my-3">
           <div class="card-body">
             <div class="mb-3">
-                <textarea name="content" id="content" cols="160%" rows="3"></textarea>
+                <textarea name="content" id="content" cols="160%" rows="3" placeholder="댓글 달기"></textarea>
             </div>
-                <input type="submit" value="댓글 등록">
+                <input type="submit" value="등록">
         </form>
       </div>
    </div>
@@ -104,6 +110,7 @@
   <!-- End #main -->
 {% endblock %}
 {% block script %}
+
 <script type='text/javascript'>
 const delete_elements = document.getElementsByClassName("delete");
 Array.from(delete_elements).forEach(function(element) {
@@ -114,4 +121,15 @@ Array.from(delete_elements).forEach(function(element) {
     });
 });
 </script>
+<script type="text/javascript">
+const recommend_elements = document.getElementsByClassName("recommend");
+Array.from(recommend_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("이 글에 좋아요를 누르시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+
 {% endblock %}

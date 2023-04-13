@@ -10,7 +10,6 @@
     <!--질문 등록-->
     <div class="card">
      <div class="card-body">
-      <h5 class="my-3 pb-2">일기 쓰기</h5>
       <form method="post" class="post-form my-3">
         {{ form.csrf_token }}
         <!--오류표시 시작-->
@@ -31,17 +30,31 @@
          <form method="post" class="my-3">
          <div class="col-lg-13">
             <div class="card-body">
+                <h3 class="my-3 pb-2">영어일기 작성하기</h3>
                 {{ form.subject.label }}
             <!--데이터가 공백일 때 오류 표시 + 다른 데이터는 초기화 하지 않음-->
               <textarea class="form-control" name="subject" id="subject" rows="1" value={{ form.subject() }}</textarea>
             </div>
             <div class="card-body">
                 {{ form.content.label }}
+                <form action="{{ url_for('review.create', question_id=question.id) }}" method="post">
                 <textarea class="form-control" name="content" id="content" rows="10" value={{ form.content() }}</textarea>
+        {% if g.user %}<br>
+        <div class="row">
+            <div class="col-lg-3">
+            <button type="submit" class = "btn btn-primary">저장하기</button>
             </div>
+            <div class="col-lg-3">
+            <a href="#" class="btn btn-primary">검토하기</a>
+            </div>
+          </form>
+        </div>
+        {% else %}
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">검토하기</a>
+        {% endif %}
+        </div>
          </div>
         </div>
-        <button type="submit" class = "btn btn-primary">저장하기</button>
       </form>
     </div>
    </div>
@@ -51,9 +64,10 @@
     <div class="card-title">
       <label for="content">TTS with Transformers and Flask</label>
     </div>
-      <form action="/generate_speech" method="POST">
-       <label for="text">Enter English text:</label>
-        <input type="text" id="text" name="text">
+      <form method="post" action="/generate_speech">
+          <div class="card-body">
+       <label for="text">Enter English text:</label></div>
+          <textarea name="text" id="text" cols="40" rows="8"></textarea>
        <button type="submit">Generate Speech</button>
       </form>
         {% if speech_text %}

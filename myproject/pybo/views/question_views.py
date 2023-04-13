@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, url_for, g, flash
 from werkzeug.utils import redirect
 
 from pybo import db
-from pybo.models import Question, Answer, User
+from pybo.models import Question, Answer, User, question_voter
 
 # 질문 등록 라우팅 함수 추가
 from pybo.forms import QuestionForm, AnswerForm
@@ -80,3 +80,19 @@ def delete(question_id):
     db.session.delete(question)
     db.session.commit()
     return redirect(url_for('question._list'))
+
+# 게시글 추천
+@bp.route('/vote/<int:question_id>/')
+# @login_required
+def vote(question_id):
+    _question = Question.query.get_or_404(question_id)
+    if g.user == _question.user:
+        _question.voter.append(g.user)
+        db.session.commit()
+    else:
+        _question.voter.append(g.user)
+        db.session.commit()
+    return redirect(url_for('question.detail', question_id=question_id))
+
+# @bp.route('/review/')
+# def

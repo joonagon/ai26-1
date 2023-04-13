@@ -14,7 +14,14 @@
   <div class="col-lg-3">
   </div>
      <div class="card">
-       <h5 class="card-header"><a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a></h5>
+       <h4 class="card-header">
+         <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}
+         </a>
+          <!--좋아요 수, 댓글 수 표시-->
+         <div style="text-align:right;"><h6><i class="bi bi-heart-fill"></i>&nbsp{{ question.voter|length }}
+         <i class="bi bi-chat"></i>&nbsp{{ question.answer_set|length }}</h6>
+         </div>
+       </h4>
        <div style="text-align: right;">
          <h8>작성자 : </h8>
           <div class="badge bg-light text-dark p-3">{{ question.user.username }}</div>
