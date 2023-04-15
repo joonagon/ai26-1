@@ -1,104 +1,41 @@
 <!-- 질문 폼 템플릿( base.html 템플릿 상속함)-->
 {% extends 'base.html' %}
 {% block content %}
+
 <main id="main" class="main">
-  <div class="container">
-  <!-- 섹션 시작 -->
-  <section class="section">
-   <div class="row">
-    <div class="col-lg-6">
-    <!--질문 등록-->
-    <div class="card">
-     <div class="card-body">
-      <form method="post" class="post-form my-3">
-        {{ form.csrf_token }}
-        <!--오류표시 시작-->
-        {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for field, errors in form.errors.items() %}
-            <strong>{{ form[field].label }}</strong>
-            <ul>
-                {% for error in errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-        </div>
-        {% endif %}
-        <!--오류표시 끝-->
-        <div class="col-lg-15">
-         <form method="post" class="my-3">
-         <div class="col-lg-13">
-            <div class="card-body">
-                <h3 class="my-3 pb-2">영어일기 작성하기</h3>
-                {{ form.subject.label }}
-            <!--데이터가 공백일 때 오류 표시 + 다른 데이터는 초기화 하지 않음-->
-              <textarea class="form-control" name="subject" id="subject" rows="1" value={{ form.subject() }}</textarea>
-            </div>
-            <div class="card-body">
-                {{ form.content.label }}
-                <form action="{{ url_for('review.create', question_id=question.id) }}" method="post">
-                <textarea class="form-control" name="content" id="content" rows="10" value={{ form.content() }}</textarea>
-        {% if g.user %}<br>
-        <div class="row">
-            <div class="col-lg-3">
-            <button type="submit" class = "btn btn-primary">저장하기</button>
-            </div>
-            <div class="col-lg-3">
-            <a href="#" class="btn btn-primary">검토하기</a>
-            </div>
+    <div class="container">
+      <div class="sharedcard-pagetitle">
+      <h1 class="text-center my-5">Step#1 그래머 체크</div></h1>
+      <div class="row">
+        <div class="col-md-6">
+          <form method="POST" action="{{ url_for('grammar.correct_grammar_api') }}">
+            <div class="form-group">
+              <div class="card-body">
+              <h3 class="my-3 pb-2" class="card-body">내용 작성하기</h3>
+              <textarea type="text" class="form-control" id="sentence" name="sentence" rows="12" placeholder="Enter your sentence here"></textarea>
+              </div><br>
+            <button type="submit" name="review" value="review" class="btn btn-primary">검토하기</button>
           </form>
+            </div>
         </div>
-        {% else %}
-        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">검토하기</a>
+
+        {% if sentence %}
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Correction</div>
+            <div class="card-body">
+              <h5 class="card-title">Before</h5>
+              <p class="card-text">{{ sentence }}</p>
+              <h5 class="card-title">After</h5>
+              <p class="card-text">{{ corrected_sentence }}</p>
+            </div>
+          </div>
+        </div>
         {% endif %}
-        </div>
-         </div>
-        </div>
-      </form>
-    </div>
-   </div>
-  </div>
- <div class="col-lg-6">
-  <div class="card-body">
-    <div class="card-title">
-      <label for="content">TTS with Transformers and Flask</label>
-    </div>
-      <form method="post" action="/generate_speech">
-          <div class="card-body">
-       <label for="text">Enter English text:</label></div>
-          <textarea name="text" id="text" cols="40" rows="8"></textarea>
-       <button type="submit">Generate Speech</button>
-      </form>
-        {% if speech_text %}
-     <h2>Generated speech:</h2>
-     <p>{{ speech_text }}</p>
-     {% endif %}
-    <div class="col-lg-6">
-     <div class="card-body">
-      <div class="card-title">
-       <h4>영어일기 자연어 처리 넣을 자리</h4>
       </div>
-         <form method="POST" action="/query">
-             <label for="input_text">Input Text:</label>
-             <input type="text" id="input_text" name="input_text">
-             <button type="submit">확인하기</button>
-         </form>
-         {% if input_text %}
-            <p>Input : {{ input_text }}</p>
-         {% endif %}
-         {% if output %}
-            <p>Output : {{ output }}</p>
-         {% endif %}
     </div>
-   </div>
 
-  </section>
-
-
- </div>
 </main>
-
     <script>
       const speakBtn = document.getElementById('speak-btn');
       speakBtn.addEventListener('click', () => {
@@ -115,4 +52,10 @@
         .then(data => console.log(data));
       });
     </script>
+<script>
+function copyTextarea() {
+  var content = document.getElementById("content").value;
+  document.getElementById("sentence").value = content;
+}
+</script>
 {% endblock %}
