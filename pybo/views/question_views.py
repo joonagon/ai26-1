@@ -30,7 +30,7 @@ def _list():
                     sub_query.c.username.ilike(search) # 댓글 쓴사람
                     ) \
             .distinct()
-    question_list = question_list.paginate(page=page, per_page=6)
+    question_list = question_list.paginate(page=page, per_page=8)
     return render_template('question/question_list.html', question_list=question_list, page=page, kw=kw)
 
 @bp.route('/detail/<int:question_id>/')
@@ -68,7 +68,7 @@ def modify(question_id):
             return redirect(url_for('question.detail', question_id=question_id))
     else: # GET 요청
         form = QuestionForm(obj=question)
-    return render_template('question/question_form.html', form=form)
+    return render_template('question/question_form_modify.html', form=form)
 
 @bp.route('/delete/<int:question_id>')
 # @login_required

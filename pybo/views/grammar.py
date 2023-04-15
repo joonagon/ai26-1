@@ -1,8 +1,13 @@
 import torch
 import requests
+from datetime import datetime
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from flask import Flask, render_template, request, Blueprint
-
+from flask import Flask, render_template, request, Blueprint, url_for, g
+from pybo.forms import QuestionForm
+from pybo.models import Question
+from werkzeug.utils import redirect
+from pybo import db
+from werkzeug.exceptions import BadRequestKeyError
 
 # Load the model
 tokenizer = AutoTokenizer.from_pretrained("vennify/t5-base-grammar-correction")
@@ -22,9 +27,19 @@ def correct_grammar(sentence):
     return corrected_sentence
 
 # Define the function to handle the form submission
-@grammar.route('/correct_grammar', methods=['POST'])
+@grammar.route('/correct_grammar', methods=['POST', 'GET'])
 def correct_grammar_api():
-    sentence = request.form['sentence']
-    corrected_sentence = correct_grammar(sentence)
-    return render_template('question/grammar.html', sentence=sentence, corrected_sentence=corrected_sentence)
-
+    if request.method == 'POST':
+        if 'review' in request.form:
+            sentence = request.form['sentence']
+            corrected_sentence = correct_grammar(sentence)
+            return render_template('question/grammar.html', sentence=sentence, corrected_sentence=corrected_sentence)
+        elif 'save' in request.form:
+            form = QuestionForm()
+            question = Question(subject=form.subject.data, content=form.content.data,
+                                create_date=datetime.now(), user=g.user)
+            db.session.add(question)
+            db.session.commit()
+            return redirect(url_for('question._list'))
+    else:
+        return render_template('question/grammar.html')
