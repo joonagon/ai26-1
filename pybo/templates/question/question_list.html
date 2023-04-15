@@ -2,39 +2,40 @@
 {% block content %}
 <main id="main" class="main">
 <!-- 질문 목록들을 담는 question_list 페이지-->
-
-<div class="container my-1 justify-content-end">
-  <div class="card mb-3">
-    <div class="container my-3">
+<section class="d-flex flex-column py-4">
+  <div class="sharedcard-pagetitle">
+      <h1>오늘의 일기장</h1>
+  </div>
 <!--카드 형태-->
 <!-- Card with an image on bottom -->
-  {% if question_list %}
-  {% for question in question_list.items %}
-  <div>
-  <div class="col-lg-3">
-  </div>
-     <div class="card">
-       <h4 class="card-header">
-         <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}
-         </a>
-          <!--좋아요 수, 댓글 수 표시-->
-         <div style="text-align:right;"><h6><i class="bi bi-heart-fill"></i>&nbsp{{ question.voter|length }}
-         <i class="bi bi-chat"></i>&nbsp{{ question.answer_set|length }}</h6>
+  <div class="question-list">
+    {% if question_list %}
+    {% for question in question_list.items %}
+    <a href="{{ url_for('question.detail', question_id=question.id) }}">
+     <div class="sharedcard">
+       <h1 class="sharedcard-header pb-0">
+         {{ question.subject }}
+         </h1>
+       <!--좋아요 수, 댓글 수 표시-->
+       <div style="text-align:right;"><h6><i class="bi bi-heart-fill"></i>&nbsp{{ question.voter|length }}
+         <i class="bi bi-chat"></i>&nbsp{{ question.answer_set|length }}&nbsp</h6>
          </div>
-       </h4>
+          <hr>
+          <!--작성날짜-->
        <div style="text-align: right;">
-         <h8>작성자 : </h8>
-          <div class="badge bg-light text-dark p-3">{{ question.user.username }}</div>
-       <h7 class="card-body">{{ question.create_date|datetime }}
-         </h7>
+       <h9 class="sharedcard-footer">{{ question.create_date|datetime }}
+         </h9>
        </div>
-       <div class="card-body" style="white-space : pre-line">{{ question.content }}
-       </div>
+       <h2 class="sharedcard-body">{{ question.content }}</h2>
+       <h3 class="sharedcard-footer">{{ question.user.username }}</h3>
+      </div>
+      {% endfor %}
+     </a>
+     </div>
    </div>
-  </div>
-    {% endfor %}
-    {% endif %}
-</div></div>
+    </section>
+  {% endif %}
+</div>
 <!-- End Card with an image on bottom -->
 
 
@@ -103,6 +104,8 @@
     <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
   </form>
+
+
 </main>
   <!-- End #main -->
 {% endblock %}

@@ -5,7 +5,7 @@ bp = Blueprint('notice', __name__, url_prefix='/')
 
 @bp.route('/notice_list/')
 def noticelist():
-    notice_list = Notice.query.order_by()
+    notice_list = Notice.query.order_by(Notice.id.desc())
     return render_template('question/notice_list.html', notice_list=notice_list)
 
 @bp.route('/notice_list/<int:notice_id>/')

@@ -191,6 +191,71 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# sharedcard / 공개일기장 페이지
+--------------------------------------------------------------*/
+
+.sharedcard {
+  margin: 15px 15px 20px 19px;
+  border: #bfc5d0;
+  width: calc(105% - 18px);
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px 2px rgba(1, 42, 112, 0.05);
+  font-family: 'Noto Sans KR', sans-serif;
+  flex-direction: row; /* 가로 방향으로 정렬 */
+  padding: 25px 20px 30px 30px;
+}
+
+.sharedcard-pagetitle h1 {
+  font-size: 40px;
+  margin: 30px 0 20px 0;
+  font-weight: 600;
+  color: #00294d;
+  text-align: center;
+}
+
+.sharedcard-header {
+  font-size: 21px;
+  font-weight: 600;
+  color: #00294d;
+  padding: 10px;
+}
+
+
+.sharedcard-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: #00294d;
+  padding: 19px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 넘친 내용 숨김 */
+  text-overflow: ellipsis; /* 넘친 내용을 ...으로 표시 */
+  max-width: 25ch; /* 최대 글자수 지정 */
+}
+
+
+.sharedcard-footer {
+  font-size: 11px;
+  font-weight: 600;
+  color: #00294d;
+  padding: 10px;
+  flex-direction: row; /* 가로 방향으로 정렬 */
+}
+
+.sharedcard-img-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.question-list {
+  display: flex; /* flexbox 레이아웃 사용 */
+  flex-direction: row; /* 가로 방향으로 정렬 */
+  flex-wrap: wrap; /* 너비가 넘칠 경우 자동으로 다음 줄로 이동 */
+  justify-content : center;
+  padding : 110px 110px 90px 110px
+}
+
+.question-list a{
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
+}
+/*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
@@ -246,7 +311,7 @@ h6 {
 
 .dropdown-menu .dropdown-footer a {
   color: #444444;
-  text-decoration: underline;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 
 .dropdown-menu .dropdown-footer a:hover {
@@ -440,6 +505,7 @@ h6 {
 .breadcrumb a {
   color: #899bbd;
   transition: 0.3s;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 
 .breadcrumb a:hover {
@@ -632,6 +698,7 @@ h6 {
 
 .header-nav .messages .message-item a {
   display: flex;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 
 .header-nav .messages .message-item img {
@@ -842,6 +909,7 @@ h6 {
 .dashboard .news h4 a {
   color: #012970;
   transition: 0.3s;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 
 .dashboard .news h4 a:hover {
@@ -958,6 +1026,7 @@ h6 {
   line-height: 0;
   margin-right: 10px;
   transition: 0.3s;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 
 .profile .profile-card .social-links a:hover {
