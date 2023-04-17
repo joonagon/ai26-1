@@ -59,3 +59,36 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('main.index'))
+
+
+
+from flask import Flask, redirect, url_for
+from flask_dance.contrib.google import make_google_blueprint, google
+
+# ...
+
+google_bp = make_google_blueprint(client_id="136279422951-4nr61veh2kajbg1tcqaggnc7uqh1hl38.apps.googleusercontent.com",
+                                   client_secret="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",
+                                   scope=["profile", "email"])
+
+app = Flask(__name__)
+app.register_blueprint(google_bp, url_prefix="/auth")
+
+@app.route("/login/google")
+def googlelogin():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/oauth2/v2/userinfo")
+    assert resp.ok, resp.text
+    email = resp.json()["email"]
+    # 로그인 처리 로직 구현
+    return redirect(url_for("main.index"))
+
+# 구글 로그인
+from flask_dance.consumer import OAuth2ConsumerBlueprint
+
+google_bp = OAuth2ConsumerBlueprint("google", __name__,
+                                        client_id="136279422951-4nr61veh2kajbg1tcqaggnc7uqh1hl38.apps.googleusercontent.com",
+                                        client_secret="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",
+                                        scope=["profile", "email"],
+                                        redirect_url="/auth/google/login/callback")

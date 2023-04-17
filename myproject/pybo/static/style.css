@@ -249,7 +249,7 @@ h6 {
   flex-direction: row; /* 가로 방향으로 정렬 */
   flex-wrap: wrap; /* 너비가 넘칠 경우 자동으로 다음 줄로 이동 */
   justify-content : center;
-  padding : 130px
+  padding : 110px 110px 90px 110px
 }
 
 .question-list a{
@@ -559,8 +559,9 @@ h6 {
 }
 
 .logo img {
-  max-height: 20px;
+  max-height: 40px;
   margin-right: 10px;
+
 }
 
 .logo span {
@@ -568,6 +569,7 @@ h6 {
   font-weight: 500;
   color: #ffffff;
   font-family: 'Noto Sans KR', sans-serif;
+
 }
 
 .header {
@@ -578,10 +580,14 @@ h6 {
   background-color: #0086ff;
   padding: 20px;
   color : #ffffff;
+
   /* Toggle Sidebar Button */
   /* Search Bar */
 }
 
+.header a{
+ text-decoration: none;
+}
 
 .header .toggle-sidebar-btn {
   font-size: 30px;

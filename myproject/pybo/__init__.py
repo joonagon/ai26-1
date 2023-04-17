@@ -31,7 +31,7 @@ def create_app():
     from . import models
 
     # 블루프린트로 라우팅함수 관리함
-    from .views import main_views, question_views, answer_views, auth_views, query, notice_views, app2, grammar
+    from .views import main_views, question_views, answer_views, auth_views, query, notice_views, tts, grammar, tag
     app.register_blueprint(main_views.bp)
     # 블루프린트에 question_views도 적용
     app.register_blueprint(question_views.bp)
@@ -40,7 +40,7 @@ def create_app():
     # 회원가입 기능을 위한 블루프린트 등록
     app.register_blueprint(auth_views.bp)
     app.register_blueprint(notice_views.bp)
-    app.register_blueprint(app2.bp)
+    app.register_blueprint(tts.bp)
     app.register_blueprint(grammar.grammar)
     # 필터
     from .filter import format_datetime
@@ -48,5 +48,18 @@ def create_app():
 
     # markdown(엔터키를 쳐야 하는 상황)
     Markdown(app, extensions=['nl2br', 'fenced_code'])
+
+    # 구글 소셜 로그인
+    from flask_dance.contrib.google import make_google_blueprint, google
+
+    google_bp = make_google_blueprint(
+        client_id="136279422951-4nr61veh2kajbg1tcqaggnc7uqh1hl38.apps.googleusercontent.com",
+        client_secret="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",
+        scope=["profile", "email"],
+        offline=True,
+        redirect_to="google.login",
+    )
+    app.register_blueprint(google_bp, url_prefix="/login")
+
     return app
 
