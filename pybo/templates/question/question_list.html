@@ -17,17 +17,17 @@
          {{ question.subject }}
          </h1>
        <!--좋아요 수, 댓글 수 표시-->
-       <div style="text-align:right;"><h6><i class="bi bi-heart-fill"></i>&nbsp{{ question.voter|length }}
+       <div style="text-align:right;"><h6><i class="bi bi-heart"></i>&nbsp{{ question.voter|length }}
          <i class="bi bi-chat"></i>&nbsp{{ question.answer_set|length }}&nbsp</h6>
          </div>
           <hr>
           <!--작성날짜-->
        <div style="text-align: right;">
-       <h9 class="sharedcard-footer">{{ question.create_date|datetime }}
-         </h9>
        </div>
        <h2 class="sharedcard-body">{{ question.content }}</h2>
        <h3 class="sharedcard-footer">{{ question.user.username }}</h3>
+       <h9 class="sharedcard-footer">{{ question.create_date|datetime }}
+         </h9>
       </div>
       {% endfor %}
      </a>
@@ -37,7 +37,6 @@
   {% endif %}
 </div>
 <!-- End Card with an image on bottom -->
-
 
 <!--페이징 처리 시작(paginate 함수 사용)-->
 <ul class="pagination justify-content-center">
