@@ -8,25 +8,25 @@
   </div>
 <!--카드 형태-->
 <!-- Card with an image on bottom -->
-  <div class="question-list">
-    {% if question_list %}
-    {% for question in question_list.items %}
-    <a href="{{ url_for('question.detail', question_id=question.id) }}">
+  <div class="diary-list">
+    {% if diary_list %}
+    {% for diary in diary_list.items %}
+    <a href="{{ url_for('diary.detail', diary_id=diary.id) }}">
      <div class="sharedcard">
        <h1 class="sharedcard-header pb-0">
-         {{ question.subject }}
+         {{ diary.subject }}
          </h1>
        <!--좋아요 수, 댓글 수 표시-->
-       <div style="text-align:right;"><h6><i class="bi bi-heart"></i>&nbsp{{ question.voter|length }}
-         <i class="bi bi-chat"></i>&nbsp{{ question.answer_set|length }}&nbsp</h6>
+       <div style="text-align:right;"><h6><i class="bi bi-heart"></i>&nbsp{{ diary.voter|length }}
+         <i class="bi bi-chat"></i>&nbsp{{ diary.answer_set|length }}&nbsp</h6>
          </div>
           <hr>
           <!--작성날짜-->
        <div style="text-align: right;">
        </div>
-       <h2 class="sharedcard-body">{{ question.content }}</h2>
-       <h3 class="sharedcard-footer">{{ question.user.username }}</h3>
-       <h9 class="sharedcard-footer">{{ question.create_date|datetime }}
+       <h2 class="sharedcard-body">{{ diary.content }}</h2>
+       <h3 class="sharedcard-footer">{{ diary.user.username }}</h3>
+       <h9 class="sharedcard-footer">{{ diary.create_date|datetime }}
          </h9>
       </div>
       {% endfor %}
@@ -41,9 +41,9 @@
 <!--페이징 처리 시작(paginate 함수 사용)-->
 <ul class="pagination justify-content-center">
 <!--이전페이지-->
-  {% if question_list.has_prev %}
+  {% if diary_list.has_prev %}
   <li class="page-item">
-    <a class="page-link" data-page="{{ question_list.prev_num }}" href="javascript:void(0)">이전</a>
+    <a class="page-link" data-page="{{ diary_list.prev_num }}" href="javascript:void(0)">이전</a>
   </li>
   {% else %}
   <li class="page-item disabled">
@@ -51,9 +51,9 @@
   </li>
   {% endif %}
 <!--페이지번호-->
-  {% for page_num in question_list.iter_pages() %}
+  {% for page_num in diary_list.iter_pages() %}
   {% if page_num %}
-  {% if page_num != question_list.page %}
+  {% if page_num != diary_list.page %}
   <li class="page-item">
     <a class="page-link" data-page="{{ page_num }}" href="javascript:void(0)">{{ page_num }}</a>
   </li>
@@ -69,9 +69,9 @@
   {% endif %}
   {% endfor %}
 <!--다음 페이지-->
-  {% if question_list.has_next %}
+  {% if diary_list.has_next %}
   <li class="page-item">
-    <a class="page-link" data-page="{{ question_list.next_num }}" href="javascript:void(0)">다음</a>
+    <a class="page-link" data-page="{{ diary_list.next_num }}" href="javascript:void(0)">다음</a>
   </li>
   {% else %}
   <li class="page-item disabled">
@@ -84,7 +84,7 @@
 <div class="container">
 <div class="row my-4">
   <div class="col-6">
-    <a href="{{ url_for('question.create') }}" class = "btn btn-primary">일기 쓰러가기</a>
+    <a href="{{ url_for('diary.create') }}" class = "btn btn-primary">일기 쓰러가기</a>
   </div>
 
   <div class="col-6">
@@ -99,7 +99,7 @@
 </div>
 </div>
 <!--GET 방식으로 요청할 수 있는 FORM 엘리먼트-->
-  <form id="searchForm" method="get" action="{{ url_for('question._list') }}">
+  <form id="searchForm" method="get" action="{{ url_for('diary._list') }}">
     <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
   </form>

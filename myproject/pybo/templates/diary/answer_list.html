@@ -2,8 +2,8 @@
 
 {% if answer_list %}
 <ul>
-    {% for question in question_list %}
-    <li><a href="/detail/{{ question.id }}/">{{ answer.subject }}</a></li>
+    {% for diary in diary_list %}
+    <li><a href="/detail/{{ diary.id }}/">{{ answer.subject }}</a></li>
     {% endfor %}
 </ul>
 {% else %}

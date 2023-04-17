@@ -31,10 +31,10 @@ def create_app():
     from . import models
 
     # 블루프린트로 라우팅함수 관리함
-    from .views import main_views, question_views, answer_views, auth_views, query, notice_views, tts, grammar, tag
+    from .views import main_views, diary_views, answer_views, auth_views, query, notice_views, tts, grammar, tag
     app.register_blueprint(main_views.bp)
-    # 블루프린트에 question_views도 적용
-    app.register_blueprint(question_views.bp)
+    # 블루프린트에 diary_views도 적용
+    app.register_blueprint(diary_views.bp)
     # 답변 기능을 위한 블루프린트 등록
     app.register_blueprint(answer_views.bp)
     # 회원가입 기능을 위한 블루프린트 등록

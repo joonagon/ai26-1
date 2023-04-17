@@ -4,7 +4,7 @@ import os
 import pygame
 import uuid
 
-bp = Blueprint('tts', __name__, url_prefix = '/question')
+bp = Blueprint('tts', __name__, url_prefix = '/diary')
 
 
 MAX_MP3_FILES = 3  # 최대 유지할 mp3 파일 수

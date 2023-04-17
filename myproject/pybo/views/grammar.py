@@ -3,8 +3,8 @@ import requests
 from datetime import datetime
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from flask import Flask, render_template, request, Blueprint, url_for, g
-from pybo.forms import QuestionForm
-from pybo.models import Question
+from pybo.forms import DiaryForm
+from pybo.models import Diary
 from werkzeug.utils import redirect
 from pybo import db
 import nltk
@@ -41,16 +41,16 @@ def correct_grammar_api():
         sentence = request.form['sentence']
         corrected_sentence = correct_grammar(sentence)
         tags = generate_tags(sentence)
-        return render_template('question/grammar.html', sentence=sentence, corrected_sentence=corrected_sentence, tags=tags)
+        return render_template('diary/grammar.html', sentence=sentence, corrected_sentence=corrected_sentence, tags=tags)
     elif 'save' in request.form:
-        form = QuestionForm()
+        form = DiaryForm()
         sentence = request.form.get('sentence')
         sentence = str(sentence)
         tags = generate_tags(sentence)
-        question = Question(subject=form.subject.data, content=form.content.data,
+        diary = Diary(subject=form.subject.data, content=form.content.data,
                             create_date=datetime.now(), user=g.user, tags = ','.join(tags))
-        db.session.add(question)
+        db.session.add(diary)
         db.session.commit()
-        return redirect(url_for('question._list'))
+        return redirect(url_for('diary._list'))
     # else:
-    #     return render_template('question/grammar.html')
+    #     return render_template('diary/grammar.html')

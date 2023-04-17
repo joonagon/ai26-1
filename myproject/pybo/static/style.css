@@ -244,7 +244,7 @@ h6 {
 .sharedcard-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
 }
-.question-list {
+.diary-list {
   display: flex; /* flexbox 레이아웃 사용 */
   flex-direction: row; /* 가로 방향으로 정렬 */
   flex-wrap: wrap; /* 너비가 넘칠 경우 자동으로 다음 줄로 이동 */
@@ -252,7 +252,7 @@ h6 {
   padding : 110px 110px 90px 110px
 }
 
-.question-list a{
+.diary-list a{
   text-decoration: none; /* 텍스트에 밑줄 제거 */
 }
 /*--------------------------------------------------------------

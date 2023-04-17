@@ -15,9 +15,9 @@
   <div id="index_button" class="index_button">
 
     {% if g.user %}
-    <a href="{{ url_for('question.create') }}" class = "btn btn-primary">시작하기</a>
+    <a href="{{ url_for('diary.create') }}" class = "btn btn-primary">시작하기</a>
     {% else %}
-    <a href="{{ url_for('question.create') }}" class = "btn btn-primary">시작하기</a>
+    <a href="{{ url_for('diary.create') }}" class = "btn btn-primary">시작하기</a>
     <a href="{{ url_for('auth.login') }}" class="btn btn-primary">로그인</a>
     {% endif %}
   </div>

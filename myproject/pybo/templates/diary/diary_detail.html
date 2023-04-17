@@ -11,37 +11,37 @@
       </div>
       {% endfor %}
         <!--일기-->
-        <h2 class="border-bottom py-2">{{ question.subject }}</h2>
+        <h2 class="border-bottom py-2">{{ diary.subject }}</h2>
           <div class="card my-3">
             <div class="card-body">
-              <div class="card-text">{{ question.content|markdown  }}</div>
+              <div class="card-text">{{ diary.content|markdown  }}</div>
                 <div class="d-flex justify-content-end">
-                    {% if question.modify_date %}
+                    {% if diary.modify_date %}
                     <div class="badge bg-light text-dark p-2 text-start mx-3">
                         <div class="mb-2">수정일자</div>
-                        <div>{{ question.modify_date|datetime }}</div>
+                        <div>{{ diary.modify_date|datetime }}</div>
                     </div>
                     {% endif %}
                 <div class="badge bg-light text-dark p-2 text-start">
-                  <div class="mb-2">{{ question.user.username }}</div>
-                  <div>{{ question.create_date|datetime }}</div>
+                  <div class="mb-2">{{ diary.user.username }}</div>
+                  <div>{{ diary.create_date|datetime }}</div>
                     </div>
                 </div>
                 <!--일기 수정기능-->
                <div class="my-3">
                  <a href="javascript:void(0)" class="recommend btn btn-sm btn-outline-secondary"
-                    data-uri="{{ url_for('question.vote', question_id=question.id) }}">
+                    data-uri="{{ url_for('diary.vote', diary_id=diary.id) }}">
                     <i class="bi bi-heart"></i>
                  </a>
-                 {% if g.user == question.user %}
-                 <a href="{{ url_for('question.modify', question_id=question.id) }}"
+                 {% if g.user == diary.user %}
+                 <a href="{{ url_for('diary.modify', diary_id=diary.id) }}"
                  class="btn btn-sm btn-outline-secondary">수정</a>
                  <a href="javascript:void(0)" class="delete btn btn-sm btn-outline-secondary"
-                    data-uri="{{ url_for('question.delete', question_id=question.id) }}">삭제</a>
+                    data-uri="{{ url_for('diary.delete', diary_id=diary.id) }}">삭제</a>
                  {% endif %}
               </div>
                 <br>
-                <span>좋아요 {{ question.voter|length }}개</span>
+                <span>좋아요 {{ diary.voter|length }}개</span>
            </div>
         </div>
       </div>
@@ -51,9 +51,9 @@
        <h5 class="border-bottom py-2">댓글 목록</h5>
         <div class="card my-3">
           <div class="card-body">
-              <h6 class="border-bottom my-3 py-2">{{ question.answer_set|length }} 개의 댓글이 있습니다.</h6>
+              <h6 class="border-bottom my-3 py-2">{{ diary.answer_set|length }} 개의 댓글이 있습니다.</h6>
               <div>
-                {% for answer in question.answer_set %}
+                {% for answer in diary.answer_set %}
                  <a id="answer_{{ answer.id }}"></a>
                  <div class="card-body">{{ answer.content|markdown  }}</div>
                   <div class="d-flex justify-content-end">
@@ -78,9 +78,9 @@
                   </div>
                   {% endfor %}
               </div>
-          <form action="{{ url_for('answer.create', question_id = question.id) }}" method="post" class="my-3">
+          <form action="{{ url_for('answer.create', diary_id = diary.id) }}" method="post" class="my-3">
            {{ form.csrf_token }}
-            <!--오류표시 (question_form과 다를 것이 없음) 시작-->
+            <!--오류표시 (diary_form 다를 것이 없음) 시작-->
             {% if form.errors %}
             <div class="alert alert-danger" role="alert">
                 {% for field, errors in form.errors.items() %}

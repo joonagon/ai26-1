@@ -31,16 +31,16 @@ def home():
     if search_text:
         c.execute("SELECT * FROM tags WHERE tags LIKE ?", ('%'+search_text+'%',))
         tags_list = c.fetchall()
-        return render_template("question/grammar.html", search_text=search_text, tags_list=tags_list)
+        return render_template("diary/grammar.html", search_text=search_text, tags_list=tags_list)
 
-    return render_template("question/grammar.html")
+    return render_template("diary/grammar.html")
 
 @tag.route("/search_tags")
 def search_tags():
     query = request.args.get("query")
     c.execute("SELECT * FROM tags WHERE tags LIKE ?", ("%" + query + "%",))
     results = c.fetchall()
-    return render_template("question/tagindex.html", results=results)
+    return render_template("diary/tagindex.html", results=results)
 
 
 @tag.route("/generate_tags", methods=["POST"])
@@ -52,7 +52,7 @@ def generate_tags():
     decoded_output = tokenizer.batch_decode(output, skip_special_tokens=True)[0]
     tags = list(set(decoded_output.strip().split(", ")))
 
-    return render_template("question/tagindex.html", tags=tags)
+    return render_template("diary/tagindex.html", tags=tags)
 
 
 if __name__ == '__main__':
