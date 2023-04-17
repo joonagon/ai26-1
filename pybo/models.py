@@ -18,7 +18,9 @@ class Question(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref = db.backref('question_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
+    tags = db.Column(db.String(400), nullable=True)
     voter = db.relationship('User', secondary=question_voter, backref=db.backref('question_voter_set')) # 추천인
+
 
 answer_voter = db.Table(
     'answer_voter',
