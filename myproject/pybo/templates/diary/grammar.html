@@ -18,10 +18,7 @@
             </div>
             <div class="card-body">
                 내용
-                <textarea class="form-control" name="content" id="content" rows="6" value="{{ 'form.content()' }}"></textarea>
-            </div>
-             <div class="card-body"> 태그
-                <textarea class="form-control" name="tag" id="tag" rows="6" value="{{ 'form.tags()' }}"></textarea>
+              <textarea class="form-control" name="content" id="content" rows="6" value="{{ 'form.content()' }}"></textarea>
             </div>
          {% if g.user %}
         <br>
@@ -35,7 +32,7 @@
 <!--            <a class = "btn btn-primary" onclick="copyTextarea2()">태그 가져오기</a>-->
             </div>
             </div>
-          </form>
+
         </div>
         {% else %}
         <a class="btn btn-primary" onclick="copyTextarea()">가져오기 ◀</a>
@@ -45,8 +42,6 @@
         {% endif %}
            </div>
           </div>
-         </div>
-       </form>
 
         {% if sentence %}
         <div class="col-md-6">
@@ -61,36 +56,16 @@
             </div>
       <div class="card">
         {% if tags %}
-        <hr><div class="card-header">
+        <hr>
         <h3>Generated Tags:</h3>
-          </div>
-        <ul>
-        <li>
-            <textarea name="tags" id="tags" cols="70%" rows="10%">
-                {% for tag in tags %}
-                {{ tag }}{% endfor %}</textarea>
-        </li>
-
-        </ul>
+        {% for tag in tags %}{{ tag }}{% endfor %}
         {% endif %}
-      </div>
-          </div>
         </div>
-        {% endif %}
-
-  </section>
-<div class="container">
-    <h1 class="mt-5">태그 생성</h1>
-    <form method="POST" action="/generate_tags" class="mt-5">
-        <div class="form-group">
-            <label for="input_text">문장 입력:</label>
-            <textarea class="form-control" id="input_text" name="input_text" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">태그 생성</button>
+       </div>
+     {% endif %}
     </form>
-
-
-  </main>
+  </section>
+ </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -103,10 +78,5 @@ function copyTextarea() {
   document.getElementById("content").value = sentence;
 }
 </script>
-<script>
-function copyTextarea2() {
-  var tags = document.getElementById("tag").value;
-  document.getElementById("tags").value = tag;
-}
-</script>
+
   {% endblock %}

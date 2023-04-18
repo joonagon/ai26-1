@@ -1,6 +1,6 @@
 <!--헤더(네비게이션바 포함) 내용 템플릿-->
 <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+  <header  class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="/" class="logo d-flex align-items-center">
         <img src="{{ url_for('static', filename= 'assets/img/logo.png') }}" alt="">
@@ -9,33 +9,33 @@
     </div><!-- End Logo -->
         <li class="nav-link">
           <a class="nav-link collapsed" href="#">
-            <i class="bi bi-journal-text"></i>
+
             <span>사용설명서</span>
           </a>
           </li>
           <!-- End 사용설명서 page Nav -->
           <li class="nav-link">
             <a class="nav-link collapsed" href="{{ url_for('diary.create') }}">
-              <i class="bi bi-person"></i>
+
               <span>일기쓰기</span>
             </a>
           </li><!-- End 일기쓰기 Page Nav -->
           <li class="nav-link">
             <a class="nav-link collapsed" href="{{ url_for('notice.noticelist') }}">
-              <i class="bi bi-envelope"></i>
+
               <span>공지사항</span>
             </a>
           </li><!-- End 공지사항 Page Nav -->
           <li class="nav-link">
             <a class="nav-link collapsed" href="{{ url_for('diary._list') }}">
-              <i class="bi bi-card-list"></i>
+
               <span>공개일기장</span>
             </a>
           </li><!-- End 공개일기장 Page Nav -->
 
           <li class="nav-link">
             <a class="nav-link collapsed" href="https://papago.naver.com/?sk=ko&tk=en" target="_blank">
-              <i class="bi bi-book"></i>
+
               <span>영어사전</span>
             </a>
           </li>

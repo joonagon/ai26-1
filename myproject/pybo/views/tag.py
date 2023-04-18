@@ -5,7 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import nltk
 from flask import Flask, render_template, request
 
-nltk.download('punkt')
+# nltk.download('punkt')
 
 tokenizer = AutoTokenizer.from_pretrained("fabiochiu/t5-base-tag-generation")
 model = AutoModelForSeq2SeqLM.from_pretrained("fabiochiu/t5-base-tag-generation")

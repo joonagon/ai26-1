@@ -34,26 +34,34 @@ def generate_tags(sentence):
     tags = list(set(decoded_output.strip().split(", ")))
     return tags
 
-# Define the function to handle the form submission
-@grammar.route('/correct_grammar', methods=['POST', 'GET'])
-def correct_grammar_api():
-    if 'review' in request.form:
-        sentence = request.form['sentence']
-        corrected_sentence = correct_grammar(sentence)
-        # tags = generate_tags(sentence)
-        # tags = tags[:3]
-        return render_template('diary/grammar.html', sentence=sentence, corrected_sentence=corrected_sentence) # tags 지움
+@grammar.route('/')
+def index():
+    # 현재 일기쓰기 프로젝트에 맞게 첫 페이지를 대체 ▼
+    return render_template('index3.html')
 
-    elif 'save' in request.form:
-        form = DiaryForm()
-        sentence = request.form.get('sentence')
+# Define the function to handle the form submission
+@grammar.route('/correct_grammar2', methods=['POST', 'GET'])
+def correct_grammar_api():
+    if 'save' in request.form:
+        sentence = request.form['sentence']
         tags = generate_tags(sentence)
         tags = tags[:3]
-        new_tags = ",".join(tags)
-        diary = Diary(subject=form.subject.data, content=form.content.data,
-                            create_date=datetime.now(), user=g.user, tags = new_tags)
-        # , tags = delete_enter
-        db.session.add(diary)
-        db.session.commit()
-        return redirect(url_for('diary._list'))
+        return render_template('index3.html', sentence=sentence, tags=tags) # tags 지움
+
+    # elif 'save' in request.form:
+    #     form = DiaryForm()
+    #     sentence = request.form.get('sentence')
+    #     tags = generate_tags(sentence)
+    #     tags = tags[:3]
+    #     print(tags)
+    #     # save_tag = form.tags.data.replace(" ", "").split(",")
+    #     # save_tag = form.tags.data.replace(" ", "").split(",")
+    #     # make_str = ','.join(save_tag)
+    #     # delete_enter = make_str.replace("\n", ",")
+    #     diary = Diary(subject=form.subject.data, content=form.content.data,
+    #                         create_date=datetime.now(), user=g.user)
+    #     # , tags = delete_enter
+    #     db.session.add(diary)
+    #     db.session.commit()
+    #     return render_template('index3.html')
 
