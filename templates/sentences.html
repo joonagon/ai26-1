@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sentences</title>
+  </head>
+  <body>
+    <h1>Sentences</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Sentence 1</th>
+          <th>Sentence 2</th>
+          <th>Sentence 3</th>
+          <th>Sentence 4</th>
+          <th>Sentence 5</th>
+          <th>Sentence 6</th>
+          <th>Sentence 7</th>
+          <th>Sentence 8</th>
+          <th>Sentence 9</th>
+          <th>Sentence 10</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+          <td>{{ row[5] }}</td>
+          <td>{{ row[6] }}</td>
+          <td>{{ row[7] }}</td>
+          <td>{{ row[8] }}</td>
+          <td>{{ row[9] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Grammar Correction</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center my-5">Grammar Correction</h1>
+
+      <div class="row">
+        <div class="col-md-6">
+          <form method="POST" action="{{ url_for('correct_grammar_api') }}">
+            <div class="form-group">
+              <label for="sentence">Original Sentence</label>
+              <input type="text" class="form-control" id="sentence" name="sentence" placeholder="Enter your sentence here">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        {% if sentence %}
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Correction</div>
+            <div class="card-body">
+              <h5 class="card-title">Before</h5>
+              <p class="card-text">{{ sentence }}</p>
+              <h5 class="card-title">After</h5>
+              <p class="card-text">{{ corrected_sentence }}</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
