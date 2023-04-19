@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('question_voter',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('question_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['question_id'], ['question.id'], name=op.f('fk_question_voter_question_id_question'), ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['question_id'], ['diary.id'], name=op.f('fk_question_voter_question_id_question'), ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], name=op.f('fk_question_voter_user_id_user'), ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('user_id', 'question_id', name=op.f('pk_question_voter'))
     )

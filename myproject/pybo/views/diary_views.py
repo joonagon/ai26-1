@@ -25,6 +25,7 @@ def _list():
             .outerjoin(sub_query, sub_query.c.diary_id == Diary.id) \
             .filter(Diary.subject.ilike(search) | # 제목
                     Diary.content.ilike(search) | # 내용
+                    Diary.tags.ilike(search) | # 태그까지
                     User.username.ilike(search) |    # 작성한사람
                     sub_query.c.content.ilike(search) | # 댓글내용
                     sub_query.c.username.ilike(search) # 댓글 쓴사람
@@ -45,7 +46,7 @@ def create():
     form = DiaryForm()
     if request.method == 'POST' and form.validate_on_submit():
         diary = Diary(subject=form.subject.data, content=form.content.data, create_date=datetime.now()
-                            ,user=g.user)
+                            ,user=g.user, tags=form.tags.data)
         db.session.add(diary)
         db.session.commit()
         return redirect(url_for('diary._list'))

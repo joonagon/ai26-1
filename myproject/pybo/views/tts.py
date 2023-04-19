@@ -11,7 +11,7 @@ MAX_MP3_FILES = 3  # 최대 유지할 mp3 파일 수
 MP3_FOLDER = 'static'  # mp3 파일이 저장될 폴더 이름
 
 app = Flask(__name__)
-pygame.mixer.init()
+# pygame.mixer.init()
 
 @app.route('/create/', methods=['POST'])
 def tts():
