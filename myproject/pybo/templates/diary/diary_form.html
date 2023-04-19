@@ -1,0 +1,47 @@
+<!-- 질문 폼 템플릿( base.html 템플릿 상속함)-->
+{% extends 'base.html' %}
+{% block content %}
+
+<main id="main" class="main">
+    <div class="container">
+      <div class="sharedcard-pagetitle">
+      <h1 class="text-center my-5">Step#1 그래머 체크</div></h1>
+      <div class="row">
+        <div class="col-md-6">
+          <form method="POST" action="{{ url_for('grammar.correct_grammar_api') }}">
+            <div class="form-group">
+              <div class="card-body">
+              <h3 class="my-3 pb-2" class="card-body">내용 작성하기</h3>
+              <textarea type="text" class="form-control" id="sentence" name="sentence" rows="12" placeholder="Enter your sentence here"></textarea>
+              </div>
+              <br>
+            <button type="submit" name="review" value="review" class="btn btn-primary">검토하기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</main>
+  <script>
+      const speakBtn = document.getElementById('speak-btn');
+      speakBtn.addEventListener('click', () => {
+        const text = document.getElementById('text').value;
+        const lang = document.getElementById('lang').value;
+        const url = '/api/tts';
+        const body = JSON.stringify({text, lang});
+        fetch(url, {
+          method: 'POST',
+          body: body,
+          headers: {'Content-Type': 'application/json'}
+        })
+        .then(response => response.json())
+        .then(data => console.log(data));
+      });
+  </script>
+  <script>
+  function copyTextarea() {
+    var content = document.getElementById("content").value;
+    document.getElementById("sentence").value = content;
+  }
+  </script>
+
+{% endblock %}
