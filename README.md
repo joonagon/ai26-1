@@ -1,4 +1,6 @@
 # ai26
 
+### flask 구동시 화면 예시
 
-![image](https://user-images.githubusercontent.com/114221089/233019044-787ee311-f06a-4c5a-a839-5005b0eb6a69.png)
+
+![image](https://user-images.githubusercontent.com/114221089/233019214-5c4d8d6e-d76e-4440-a78b-e142cdaae5de.png)
