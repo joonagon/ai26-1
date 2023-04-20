@@ -6,39 +6,40 @@
         <img src="{{ url_for('static', filename= 'assets/img/logo.png') }}" alt="">
         <span class="d-none d-lg-block">콕! Tale.</span>
       </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-        <li class="nav-link">
-          <a class="nav-link collapsed" href="#">
 
-            <span>사용설명서</span>
+        <li class="nav-link">
+          <a class="nav-link" href="#">
+            <span class="d-none d-lg-block">사용설명서</span>
           </a>
           </li>
           <!-- End 사용설명서 page Nav -->
-          <li class="nav-link">
-            <a class="nav-link collapsed" href="{{ url_for('diary.create') }}">
 
-              <span>일기쓰기</span>
+          <li class="nav-link">
+            <a class="nav-link" href="{{ url_for('diary.create') }}">
+              <span class="d-none d-lg-block">일기쓰기</span>
             </a>
           </li><!-- End 일기쓰기 Page Nav -->
-          <li class="nav-link">
-            <a class="nav-link collapsed" href="{{ url_for('notice.noticelist') }}">
 
-              <span>공지사항</span>
+          <li class="nav-link">
+            <a class="nav-link" href="{{ url_for('notice.noticelist') }}">
+              <span class="d-none d-lg-block">공지사항</span>
             </a>
           </li><!-- End 공지사항 Page Nav -->
-          <li class="nav-link">
-            <a class="nav-link collapsed" href="{{ url_for('diary._list') }}">
 
-              <span>공개일기장</span>
+          <li class="nav-link">
+            <a class="nav-link" href="{{ url_for('diary._list') }}">
+              <span class="d-none d-lg-block">공개일기장</span>
             </a>
           </li><!-- End 공개일기장 Page Nav -->
 
           <li class="nav-link">
-            <a class="nav-link collapsed" href="https://papago.naver.com/?sk=ko&tk=en" target="_blank">
-
-              <span>영어사전</span>
+            <a class="nav-link" href="https://papago.naver.com/?sk=ko&tk=en" target="_blank">
+              <span class="d-none d-lg-block">영어사전</span>
             </a>
           </li>
+
           <nav class="header-nav ms-auto">
           <ul class="d-flex align-items-right">
           <li class="nav-item dropdown pe-3">
@@ -50,7 +51,7 @@
               <span class="d-none d-md-block dropdown-toggle ps-2">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ g.user.username }} [로그아웃] </a>
               </span>
-            <!-- End Profile Iamge Icon -->
+            <!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
@@ -100,3 +101,50 @@
       </ul>
     </nav><!-- End Icons Navigation -->
   </header><!-- End Header -->
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <span>프로필</span>
+        </a>
+      </li><!-- End 프로필 / 비로그인시 로그인으로 표기 해야함 Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url_for('notice.noticelist') }}">
+          <span>공지사항</span>
+        </a>
+      </li><!-- End 일기쓰기 Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url_for('diary.create') }}">
+          <span>일기쓰기</span>
+        </a>
+      </li><!-- End 일기쓰기 Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <span>사용설명서</span>
+        </a>
+      </li><!-- End 사용설명서 Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url_for('diary._list') }}">
+          <span>공개일기장</span>
+        </a>
+      </li><!-- End 공개일기장 Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="https://papago.naver.com/?sk=ko&tk=en" target="_blank">
+          <span>영어사전</span>
+        </a>
+      </li><!-- End 영어사전 Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
